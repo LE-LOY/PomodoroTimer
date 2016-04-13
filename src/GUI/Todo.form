@@ -26,12 +26,12 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="scr_tasks" max="32767" attributes="0"/>
+                  <Component id="scr_tasks" pref="276" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="btn_done" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                      <Component id="lbl_active" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="49" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lbl_active" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btn_back" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -205,6 +205,9 @@
         <Property name="text" type="java.lang.String" value="Tasks:"/>
         <Property name="name" type="java.lang.String" value="lbl_active" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_activeMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

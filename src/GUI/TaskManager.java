@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 public class TaskManager {
     static ArrayList tasks = new ArrayList();
+    static ArrayList done = new ArrayList();
     
     public static void loadTasks(){
         tasks.clear();
@@ -20,7 +21,7 @@ public class TaskManager {
             while(scan.hasNext())
                 tasks.add(scan.nextLine());
                         
-            System.out.println("TaskManager loaded!");
+            System.out.println("Tasks loaded!");
         } catch(IOException e) {
             
         }
@@ -46,6 +47,21 @@ public class TaskManager {
         //System.out.println("GOT HERE!");
     }
     
+    public static void loadDone(){
+        done.clear();
+        File file = new File("done.txt");
+        try{
+            Scanner scan = new Scanner(file);
+            
+            while(scan.hasNext())
+                done.add(scan.nextLine());
+                        
+            System.out.println("Done Tasks loaded!");
+        } catch(IOException e) {
+            
+        }
+    }
+    
     public static void saveToDone(int i){
         String task = (String)tasks.get(i);
         
@@ -54,6 +70,7 @@ public class TaskManager {
             FileWriter filewriter = new FileWriter(file, true);
             filewriter.write(task+"\n");
             filewriter.close();
+            done.add(task);
         } catch( IOException e ){
             e.printStackTrace();
         }

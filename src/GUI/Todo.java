@@ -9,9 +9,11 @@ import javax.swing.DefaultListModel;
 public class Todo extends javax.swing.JFrame {
     static Todo todo = new Todo();
     DefaultListModel DLM = new DefaultListModel();
+    DefaultListModel DoneLM = new DefaultListModel();
     
     public Todo() {
         loadDLM();
+        loadDoneLM();
         initComponents();
         
         this.getContentPane().setBackground(new Color(51, 51, 55) );
@@ -102,6 +104,11 @@ public class Todo extends javax.swing.JFrame {
         lbl_active.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_active.setText("Tasks:");
         lbl_active.setName("lbl_active"); // NOI18N
+        lbl_active.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_activeMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,12 +117,12 @@ public class Todo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scr_tasks)
+                    .addComponent(scr_tasks, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_done)
-                        .addGap(48, 48, 48)
-                        .addComponent(lbl_active)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_active, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_back))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txt_input, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -152,6 +159,16 @@ public class Todo extends javax.swing.JFrame {
         
         for (int i = 0; i < size; ++i) {
             DLM.addElement(tasks.get(i));
+        }
+    }
+    
+    private void loadDoneLM(){
+        DoneLM.clear();
+        ArrayList done = TaskManager.done;
+        int size = done.size();
+        
+        for(int i=0; i<size; ++i){
+            DoneLM.addElement(done.get(i));
         }
     }
     
@@ -192,8 +209,23 @@ public class Todo extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_done_onClick
 
     private void lst_tasks_onSelect(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lst_tasks_onSelect
-        btn_done.setEnabled(true);
+        if(lbl_active.getText()=="Tasks:")
+            btn_done.setEnabled(true);
     }//GEN-LAST:event_lst_tasks_onSelect
+
+    private void lbl_activeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_activeMouseClicked
+        if(lbl_active.getText()=="Tasks:"){
+            lbl_active.setText("Done:");
+            lst_tasks.setModel(DoneLM);
+            btn_add.setEnabled(false);
+            txt_input.setEnabled(false);
+        } else {
+            lbl_active.setText("Tasks:");
+            lst_tasks.setModel(DLM);
+            btn_add.setEnabled(true);
+            txt_input.setEnabled(true);
+        }
+    }//GEN-LAST:event_lbl_activeMouseClicked
 
     
     public static void main(String args[]) {

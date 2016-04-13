@@ -5,6 +5,7 @@ package GUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.Timer;
 
 public class Pomodoro extends javax.swing.JFrame {
@@ -21,6 +22,7 @@ public class Pomodoro extends javax.swing.JFrame {
         initComponents();
         Settings.init();
         TaskManager.loadTasks();
+        TaskManager.loadDone();
         
         updateTimer();
         firstTask();
@@ -77,9 +79,31 @@ public class Pomodoro extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(300, 550));
 
         btn_startpause.setBackground(new java.awt.Color(51, 51, 51));
-        btn_startpause.setForeground(new java.awt.Color(153, 255, 255));
-        btn_startpause.setText("Start");
+        btn_startpause.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btn_startpause.setForeground(new java.awt.Color(255, 255, 255));
+        btn_startpause.setText("  Start  ");
+        btn_startpause.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn_startpause.setContentAreaFilled(false);
+        btn_startpause.setMargin(new java.awt.Insets(2, 7, 2, 7));
+        btn_startpause.setMaximumSize(new java.awt.Dimension(100, 50));
+        btn_startpause.setMinimumSize(new java.awt.Dimension(0, 0));
         btn_startpause.setName("btn_startpause"); // NOI18N
+        btn_startpause.setOpaque(true);
+        btn_startpause.setPreferredSize(new java.awt.Dimension(48, 25));
+        btn_startpause.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                onMousePress(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                onMouseRelease(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                onMouseExit(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                onMouseEnter(evt);
+            }
+        });
         btn_startpause.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_startpause_onCLick(evt);
@@ -87,10 +111,31 @@ public class Pomodoro extends javax.swing.JFrame {
         });
 
         btn_done.setBackground(new java.awt.Color(51, 51, 51));
-        btn_done.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btn_done.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_done.setForeground(new java.awt.Color(255, 255, 255));
-        btn_done.setText("Done");
+        btn_done.setText("  Done  ");
+        btn_done.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn_done.setContentAreaFilled(false);
+        btn_done.setMargin(new java.awt.Insets(2, 7, 2, 7));
+        btn_done.setMaximumSize(new java.awt.Dimension(65, 25));
+        btn_done.setMinimumSize(new java.awt.Dimension(0, 0));
         btn_done.setName("btn_done"); // NOI18N
+        btn_done.setOpaque(true);
+        btn_done.setPreferredSize(new java.awt.Dimension(60, 25));
+        btn_done.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                onMousePress(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                onMouseRelease(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                onMouseExit(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                onMouseEnter(evt);
+            }
+        });
         btn_done.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_done_onClick(evt);
@@ -98,10 +143,31 @@ public class Pomodoro extends javax.swing.JFrame {
         });
 
         btn_skip.setBackground(new java.awt.Color(51, 51, 51));
-        btn_skip.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btn_skip.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_skip.setForeground(new java.awt.Color(255, 255, 255));
-        btn_skip.setText("Skip");
+        btn_skip.setText("  Skip  ");
+        btn_skip.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn_skip.setContentAreaFilled(false);
+        btn_skip.setMargin(new java.awt.Insets(2, 7, 2, 7));
+        btn_skip.setMaximumSize(new java.awt.Dimension(51, 25));
+        btn_skip.setMinimumSize(new java.awt.Dimension(51, 25));
         btn_skip.setName("btn_skip"); // NOI18N
+        btn_skip.setOpaque(true);
+        btn_skip.setPreferredSize(new java.awt.Dimension(51, 25));
+        btn_skip.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                onMousePress(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                onMouseRelease(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                onMouseExit(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                onMouseEnter(evt);
+            }
+        });
         btn_skip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_skip_onClick(evt);
@@ -109,10 +175,29 @@ public class Pomodoro extends javax.swing.JFrame {
         });
 
         btn_todo.setBackground(new java.awt.Color(51, 51, 51));
-        btn_todo.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btn_todo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_todo.setForeground(new java.awt.Color(255, 255, 255));
-        btn_todo.setText("To-do");
+        btn_todo.setText("  To-do  ");
+        btn_todo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn_todo.setContentAreaFilled(false);
+        btn_todo.setMargin(new java.awt.Insets(2, 7, 2, 7));
+        btn_todo.setMinimumSize(new java.awt.Dimension(0, 0));
         btn_todo.setName("btn_todo"); // NOI18N
+        btn_todo.setOpaque(true);
+        btn_todo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                onMousePress(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                onMouseRelease(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                onMouseExit(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                onMouseEnter(evt);
+            }
+        });
         btn_todo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_todo_onClick(evt);
@@ -120,10 +205,28 @@ public class Pomodoro extends javax.swing.JFrame {
         });
 
         btn_utilities.setBackground(new java.awt.Color(51, 51, 51));
-        btn_utilities.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btn_utilities.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_utilities.setForeground(new java.awt.Color(255, 255, 255));
-        btn_utilities.setText("Utilities");
+        btn_utilities.setText("  Utilities  ");
+        btn_utilities.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn_utilities.setContentAreaFilled(false);
+        btn_utilities.setMargin(new java.awt.Insets(2, 7, 2, 7));
         btn_utilities.setName("btn_utilities"); // NOI18N
+        btn_utilities.setOpaque(true);
+        btn_utilities.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                onMousePress(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                onMouseRelease(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                onMouseExit(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                onMouseEnter(evt);
+            }
+        });
         btn_utilities.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_utilities_onClick(evt);
@@ -136,13 +239,27 @@ public class Pomodoro extends javax.swing.JFrame {
 
         btn_hrs_add.setBackground(new java.awt.Color(51, 51, 51));
         btn_hrs_add.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btn_hrs_add.setForeground(new java.awt.Color(204, 204, 204));
+        btn_hrs_add.setForeground(new java.awt.Color(255, 255, 255));
         btn_hrs_add.setText(" + ");
         btn_hrs_add.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_hrs_add.setContentAreaFilled(false);
         btn_hrs_add.setName("btn_hrs_add"); // NOI18N
         btn_hrs_add.setOpaque(true);
         btn_hrs_add.setPreferredSize(new java.awt.Dimension(80, 20));
+        btn_hrs_add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                onMousePress(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                onMouseRelease(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                onMouseExit(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                onMouseEnter(evt);
+            }
+        });
         btn_hrs_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_hrs_add_onClick(evt);
@@ -165,13 +282,27 @@ public class Pomodoro extends javax.swing.JFrame {
 
         btn_hrs_sub.setBackground(new java.awt.Color(51, 51, 51));
         btn_hrs_sub.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btn_hrs_sub.setForeground(new java.awt.Color(204, 204, 204));
+        btn_hrs_sub.setForeground(new java.awt.Color(255, 255, 255));
         btn_hrs_sub.setText(" - ");
         btn_hrs_sub.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_hrs_sub.setContentAreaFilled(false);
         btn_hrs_sub.setName("btn_hrs_sub"); // NOI18N
         btn_hrs_sub.setOpaque(true);
         btn_hrs_sub.setPreferredSize(new java.awt.Dimension(80, 20));
+        btn_hrs_sub.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                onMousePress(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                onMouseRelease(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                onMouseExit(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                onMouseEnter(evt);
+            }
+        });
         btn_hrs_sub.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_hrs_sub_onClick(evt);
@@ -213,13 +344,27 @@ public class Pomodoro extends javax.swing.JFrame {
 
         btn_min_add.setBackground(new java.awt.Color(51, 51, 51));
         btn_min_add.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btn_min_add.setForeground(new java.awt.Color(204, 204, 204));
+        btn_min_add.setForeground(new java.awt.Color(255, 255, 255));
         btn_min_add.setText(" + ");
         btn_min_add.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_min_add.setContentAreaFilled(false);
         btn_min_add.setName("btn_min_add"); // NOI18N
         btn_min_add.setOpaque(true);
         btn_min_add.setPreferredSize(new java.awt.Dimension(80, 20));
+        btn_min_add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                onMousePress(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                onMouseRelease(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                onMouseExit(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                onMouseEnter(evt);
+            }
+        });
         btn_min_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_min_add_onClick(evt);
@@ -242,13 +387,27 @@ public class Pomodoro extends javax.swing.JFrame {
 
         btn_min_sub.setBackground(new java.awt.Color(51, 51, 51));
         btn_min_sub.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btn_min_sub.setForeground(new java.awt.Color(204, 204, 204));
+        btn_min_sub.setForeground(new java.awt.Color(255, 255, 255));
         btn_min_sub.setText(" - ");
         btn_min_sub.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_min_sub.setContentAreaFilled(false);
         btn_min_sub.setName("btn_min_sub"); // NOI18N
         btn_min_sub.setOpaque(true);
         btn_min_sub.setPreferredSize(new java.awt.Dimension(80, 20));
+        btn_min_sub.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                onMousePress(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                onMouseRelease(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                onMouseExit(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                onMouseEnter(evt);
+            }
+        });
         btn_min_sub.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_min_sub_onClick(evt);
@@ -290,13 +449,27 @@ public class Pomodoro extends javax.swing.JFrame {
 
         btn_sec_add.setBackground(new java.awt.Color(51, 51, 51));
         btn_sec_add.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btn_sec_add.setForeground(new java.awt.Color(204, 204, 204));
+        btn_sec_add.setForeground(new java.awt.Color(255, 255, 255));
         btn_sec_add.setText(" + ");
         btn_sec_add.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_sec_add.setContentAreaFilled(false);
         btn_sec_add.setName("btn_sec_add"); // NOI18N
         btn_sec_add.setOpaque(true);
         btn_sec_add.setPreferredSize(new java.awt.Dimension(80, 20));
+        btn_sec_add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                onMousePress(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                onMouseRelease(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                onMouseExit(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                onMouseEnter(evt);
+            }
+        });
         btn_sec_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_sec_add_onClick(evt);
@@ -319,13 +492,27 @@ public class Pomodoro extends javax.swing.JFrame {
 
         btn_sec_sub.setBackground(new java.awt.Color(51, 51, 51));
         btn_sec_sub.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btn_sec_sub.setForeground(new java.awt.Color(204, 204, 204));
+        btn_sec_sub.setForeground(new java.awt.Color(255, 255, 255));
         btn_sec_sub.setText(" - ");
         btn_sec_sub.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_sec_sub.setContentAreaFilled(false);
         btn_sec_sub.setName("btn_sec_sub"); // NOI18N
         btn_sec_sub.setOpaque(true);
         btn_sec_sub.setPreferredSize(new java.awt.Dimension(80, 20));
+        btn_sec_sub.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                onMousePress(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                onMouseRelease(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                onMouseExit(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                onMouseEnter(evt);
+            }
+        });
         btn_sec_sub.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_sec_sub_onClick(evt);
@@ -382,15 +569,15 @@ public class Pomodoro extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(lbl_active, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(btn_done)
+                        .add(btn_done, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(btn_skip)
+                        .add(btn_skip, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 51, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(btn_startpause))
+                        .add(btn_startpause, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 65, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createSequentialGroup()
-                        .add(btn_todo)
+                        .add(btn_todo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 65, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(btn_utilities))
+                        .add(btn_utilities, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 73, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createSequentialGroup()
                         .add(pnl_hours, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
@@ -405,8 +592,8 @@ public class Pomodoro extends javax.swing.JFrame {
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(btn_todo)
-                    .add(btn_utilities))
+                    .add(btn_todo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(btn_utilities, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(34, 34, 34)
                 .add(lbl_active)
                 .add(30, 30, 30)
@@ -418,9 +605,9 @@ public class Pomodoro extends javax.swing.JFrame {
                     .add(pnl_minutes, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(114, 114, 114)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(btn_startpause)
-                    .add(btn_done)
-                    .add(btn_skip))
+                    .add(btn_startpause, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(btn_done, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(btn_skip, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -634,6 +821,26 @@ public class Pomodoro extends javax.swing.JFrame {
         updateTimer(--hrs, min, sec);
     }//GEN-LAST:event_btn_hrs_sub_onClick
 
+    private void onMouseEnter(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onMouseEnter
+        JButton button = (JButton) evt.getSource();
+        button.setBackground(new Color(35, 35, 40));
+    }//GEN-LAST:event_onMouseEnter
+
+    private void onMouseExit(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onMouseExit
+        JButton button = (JButton) evt.getSource();
+        button.setBackground(new Color(51, 51, 51));
+    }//GEN-LAST:event_onMouseExit
+
+    private void onMousePress(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onMousePress
+        JButton button = (JButton) evt.getSource();
+        button.setBackground(new Color(15, 15, 20));
+    }//GEN-LAST:event_onMousePress
+
+    private void onMouseRelease(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onMouseRelease
+        JButton button = (JButton) evt.getSource();
+        button.setBackground(new Color(35, 35, 40));
+    }//GEN-LAST:event_onMouseRelease
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -660,12 +867,12 @@ public class Pomodoro extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_done;
-    private javax.swing.JButton btn_hrs_add;
-    private javax.swing.JButton btn_hrs_sub;
-    private javax.swing.JButton btn_min_add;
-    private javax.swing.JButton btn_min_sub;
-    private javax.swing.JButton btn_sec_add;
-    private javax.swing.JButton btn_sec_sub;
+    public static javax.swing.JButton btn_hrs_add;
+    public static javax.swing.JButton btn_hrs_sub;
+    public static javax.swing.JButton btn_min_add;
+    public static javax.swing.JButton btn_min_sub;
+    public static javax.swing.JButton btn_sec_add;
+    public static javax.swing.JButton btn_sec_sub;
     private javax.swing.JButton btn_skip;
     private javax.swing.JButton btn_startpause;
     private javax.swing.JButton btn_todo;
