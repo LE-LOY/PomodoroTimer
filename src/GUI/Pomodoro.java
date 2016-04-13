@@ -744,14 +744,15 @@ public class Pomodoro extends javax.swing.JFrame {
 
     
     private void btn_todo_onClick(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_todo_onClick
-        Todo todo = new Todo();
-        todo.setVisible(true);
+        //Todo todo = new Todo();
+        Todo.todo.setVisible(true);
         
         this.setEnabled(false);
     }//GEN-LAST:event_btn_todo_onClick
 
     private void btn_utilities_onClick(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_utilities_onClick
-        // TODO add your handling code here:
+        Utilities.utilities.setVisible(true);
+        this.setEnabled(false);
     }//GEN-LAST:event_btn_utilities_onClick
 
     

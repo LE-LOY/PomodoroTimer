@@ -5,6 +5,7 @@ package GUI;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 
 public class Todo extends javax.swing.JFrame {
     static Todo todo = new Todo();
@@ -62,37 +63,83 @@ public class Todo extends javax.swing.JFrame {
         txt_input.setName("txt_input"); // NOI18N
         txt_input.setPreferredSize(new java.awt.Dimension(94, 23));
 
-        btn_back.setBackground(new java.awt.Color(53, 53, 53));
-        btn_back.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btn_back.setBackground(new java.awt.Color(51, 51, 51));
+        btn_back.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_back.setForeground(new java.awt.Color(255, 255, 255));
-        btn_back.setText("Back");
+        btn_back.setText(" Back ");
+        btn_back.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn_back.setContentAreaFilled(false);
         btn_back.setMargin(new java.awt.Insets(2, 7, 2, 7));
+        btn_back.setMaximumSize(new java.awt.Dimension(100, 30));
+        btn_back.setMinimumSize(new java.awt.Dimension(0, 0));
         btn_back.setName("btn_back"); // NOI18N
+        btn_back.setOpaque(true);
+        btn_back.setPreferredSize(new java.awt.Dimension(34, 25));
+        btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                onMousePress(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                onMouseRelease(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                onMouseExit(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                onMouseEnter(evt);
+            }
+        });
         btn_back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_back_onClick(evt);
             }
         });
 
-        btn_add.setBackground(new java.awt.Color(53, 53, 53));
-        btn_add.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btn_add.setBackground(new java.awt.Color(51, 51, 51));
+        btn_add.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btn_add.setForeground(new java.awt.Color(255, 255, 255));
-        btn_add.setText("+");
+        btn_add.setText(" + ");
+        btn_add.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn_add.setContentAreaFilled(false);
+        btn_add.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_add.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        btn_add.setMaximumSize(new java.awt.Dimension(31, 24));
+        btn_add.setMinimumSize(new java.awt.Dimension(23, 24));
         btn_add.setName("btn_add"); // NOI18N
-        btn_add.setPreferredSize(new java.awt.Dimension(23, 23));
+        btn_add.setOpaque(true);
+        btn_add.setPreferredSize(new java.awt.Dimension(23, 24));
+        btn_add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                onMousePress(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                onMouseRelease(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                onMouseExit(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                onMouseEnter(evt);
+            }
+        });
         btn_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_add_onClick(evt);
             }
         });
 
-        btn_done.setBackground(new java.awt.Color(53, 53, 53));
-        btn_done.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btn_done.setBackground(new java.awt.Color(51, 51, 51));
+        btn_done.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btn_done.setForeground(new java.awt.Color(255, 255, 255));
-        btn_done.setText("Done");
+        btn_done.setText(" Done ");
+        btn_done.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn_done.setContentAreaFilled(false);
         btn_done.setMargin(new java.awt.Insets(2, 7, 2, 7));
+        btn_done.setMaximumSize(new java.awt.Dimension(100, 30));
+        btn_done.setMinimumSize(new java.awt.Dimension(0, 0));
         btn_done.setName("btn_done"); // NOI18N
+        btn_done.setOpaque(true);
+        btn_done.setPreferredSize(new java.awt.Dimension(37, 25));
         btn_done.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_done_onClick(evt);
@@ -119,15 +166,15 @@ public class Todo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scr_tasks, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_done)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_done, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
                         .addComponent(lbl_active, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_back))
+                        .addGap(0, 0, 0)
+                        .addComponent(btn_back, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txt_input, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_add, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_add, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -137,15 +184,17 @@ public class Todo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_back)
-                            .addComponent(btn_done)))
+                            .addComponent(btn_back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_done, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(lbl_active, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, 0)
                 .addComponent(scr_tasks, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_input, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_add, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(txt_input, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_add, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -160,6 +209,8 @@ public class Todo extends javax.swing.JFrame {
         for (int i = 0; i < size; ++i) {
             DLM.addElement(tasks.get(i));
         }
+        
+        System.out.println("DLM loaded!");
     }
     
     private void loadDoneLM(){
@@ -170,6 +221,8 @@ public class Todo extends javax.swing.JFrame {
         for(int i=0; i<size; ++i){
             DoneLM.addElement(done.get(i));
         }
+        
+        System.out.println("DoneLM loaded!");
     }
     
     public void addTask(){
@@ -209,23 +262,50 @@ public class Todo extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_done_onClick
 
     private void lst_tasks_onSelect(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lst_tasks_onSelect
-        if(lbl_active.getText()=="Tasks:")
+        if(lbl_active.getText().equals("Tasks:"))
             btn_done.setEnabled(true);
     }//GEN-LAST:event_lst_tasks_onSelect
 
     private void lbl_activeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_activeMouseClicked
-        if(lbl_active.getText()=="Tasks:"){
+        if(lbl_active.getText().equals("Tasks:")){
             lbl_active.setText("Done:");
+            
+            loadDoneLM();
             lst_tasks.setModel(DoneLM);
+            
+            btn_done.setEnabled(false);
             btn_add.setEnabled(false);
             txt_input.setEnabled(false);
         } else {
             lbl_active.setText("Tasks:");
+            
+            loadDLM();
             lst_tasks.setModel(DLM);
+            
             btn_add.setEnabled(true);
             txt_input.setEnabled(true);
         }
     }//GEN-LAST:event_lbl_activeMouseClicked
+
+    private void onMouseEnter(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onMouseEnter
+        JButton button = (JButton) evt.getSource();
+        button.setBackground(new Color(35, 35, 40));
+    }//GEN-LAST:event_onMouseEnter
+
+    private void onMouseExit(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onMouseExit
+        JButton button = (JButton) evt.getSource();
+        button.setBackground(new Color(51, 51, 51));
+    }//GEN-LAST:event_onMouseExit
+
+    private void onMousePress(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onMousePress
+        JButton button = (JButton) evt.getSource();
+        button.setBackground(new Color(15, 15, 20));
+    }//GEN-LAST:event_onMousePress
+
+    private void onMouseRelease(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onMouseRelease
+        JButton button = (JButton) evt.getSource();
+        button.setBackground(new Color(35, 35, 40));
+    }//GEN-LAST:event_onMouseRelease
 
     
     public static void main(String args[]) {
