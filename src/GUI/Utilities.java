@@ -1,4 +1,4 @@
-//@author leloy
+//@author LE-LOY
 
 package GUI;
 

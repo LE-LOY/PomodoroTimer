@@ -1,4 +1,4 @@
-//@author leloy
+//@author LE-LOY
 
 package GUI;
 
@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class TaskManager {
     static ArrayList tasks = new ArrayList();
     static ArrayList done = new ArrayList();
+    
     
     public static void loadTasks(){
         tasks.clear();

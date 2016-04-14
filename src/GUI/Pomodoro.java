@@ -1,11 +1,13 @@
-//@author leloy
+//@author LE-LOY
 
 package GUI;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 public class Pomodoro extends javax.swing.JFrame {
@@ -23,11 +25,23 @@ public class Pomodoro extends javax.swing.JFrame {
         Settings.init();
         TaskManager.loadTasks();
         TaskManager.loadDone();
-        
+        DateTime.load();
+
+        this.getContentPane().setBackground(new Color(51, 51, 55) );
         updateTimer();
         firstTask();
         
-        this.getContentPane().setBackground(new Color(51, 51, 55) );
+        DateTime.saveNow("Opened:");
+        
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if(btn_startpause.getText()==" Pause ")
+                    DateTime.saveNow("Paused:");
+                DateTime.saveNow("Closed:");
+                System.exit(0);
+            }
+        });
         
         ticker = new Timer(10, new ActionListener() {
             @Override
@@ -724,12 +738,14 @@ public class Pomodoro extends javax.swing.JFrame {
     
     private void btn_startpause_onCLick(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_startpause_onCLick
         if(!lbl_task.getText().equals("Chill out!")){
-            if(btn_startpause.getText().equals("Start")){
-                btn_startpause.setText("Pause");
+            if(btn_startpause.getText().equals("  Start  ")){
+                btn_startpause.setText(" Pause ");
                 ticker.start();
+                DateTime.saveNow("Started:");
             } else {
-                btn_startpause.setText("Start");
+                btn_startpause.setText("  Start  ");
                 ticker.stop();
+                DateTime.saveNow("Paused:");
             }
         }
     }//GEN-LAST:event_btn_startpause_onCLick
@@ -822,6 +838,7 @@ public class Pomodoro extends javax.swing.JFrame {
         updateTimer(--hrs, min, sec);
     }//GEN-LAST:event_btn_hrs_sub_onClick
 
+    
     private void onMouseEnter(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onMouseEnter
         JButton button = (JButton) evt.getSource();
         button.setBackground(new Color(35, 35, 40));
