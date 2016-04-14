@@ -3,9 +3,11 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.util.ArrayList;
+import javax.swing.JPanel;
 
 public class Utilities extends javax.swing.JFrame {
-    static Utilities utilities = new Utilities();
     
     public Utilities() {
         initComponents();
@@ -18,8 +20,35 @@ public class Utilities extends javax.swing.JFrame {
     private void initComponents() {
 
         btn_back = new javax.swing.JButton();
+        pnl_activity = new JPanel(){
+            ArrayList squares = new ArrayList();
+            int squareSize;
+
+            private void populate(){
+                ArrayList marks = DateTime.marks;
+            }
+
+            private void paintSquares(Graphics g) {
+                squares = DateTime.marks;
+                int size = squares.size();
+
+                for(int i=0; i<size; ++i){
+                    ActiveMark square = (ActiveMark) squares.get(i);
+                    square.draw(g);
+                }
+            }
+
+            @Override
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                paintSquares(g);
+            }
+        };
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(300, 550));
+        setMinimumSize(new java.awt.Dimension(300, 550));
+        setSize(new java.awt.Dimension(300, 550));
 
         btn_back.setBackground(new java.awt.Color(53, 53, 53));
         btn_back.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -28,6 +57,8 @@ public class Utilities extends javax.swing.JFrame {
         btn_back.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btn_back.setContentAreaFilled(false);
         btn_back.setMargin(new java.awt.Insets(2, 7, 2, 7));
+        btn_back.setMaximumSize(new java.awt.Dimension(42, 25));
+        btn_back.setMinimumSize(new java.awt.Dimension(42, 25));
         btn_back.setName("btn_back"); // NOI18N
         btn_back.setOpaque(true);
         btn_back.setPreferredSize(new java.awt.Dimension(34, 25));
@@ -37,21 +68,46 @@ public class Utilities extends javax.swing.JFrame {
             }
         });
 
+        pnl_activity.setBackground(new java.awt.Color(51, 51, 51));
+        pnl_activity.setForeground(new java.awt.Color(255, 255, 255));
+        pnl_activity.setMaximumSize(new java.awt.Dimension(288, 70));
+        pnl_activity.setMinimumSize(new java.awt.Dimension(288, 70));
+        pnl_activity.setName("pnl_activity"); // NOI18N
+        pnl_activity.setPreferredSize(new java.awt.Dimension(288, 70));
+
+        javax.swing.GroupLayout pnl_activityLayout = new javax.swing.GroupLayout(pnl_activity);
+        pnl_activity.setLayout(pnl_activityLayout);
+        pnl_activityLayout.setHorizontalGroup(
+            pnl_activityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 288, Short.MAX_VALUE)
+        );
+        pnl_activityLayout.setVerticalGroup(
+            pnl_activityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btn_back, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(241, Short.MAX_VALUE))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_back, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(241, 241, 241))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(pnl_activity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btn_back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(463, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 431, Short.MAX_VALUE)
+                .addComponent(pnl_activity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -92,11 +148,13 @@ public class Utilities extends javax.swing.JFrame {
         //</editor-fold>
 
         java.awt.EventQueue.invokeLater(() -> {
-            utilities.setVisible(true);
+            Pomodoro.utilities.setVisible(true);
+            
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_back;
+    private javax.swing.JPanel pnl_activity;
     // End of variables declaration//GEN-END:variables
 }

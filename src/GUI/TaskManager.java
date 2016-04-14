@@ -12,7 +12,6 @@ public class TaskManager {
     static ArrayList tasks = new ArrayList();
     static ArrayList done = new ArrayList();
     
-    
     public static void loadTasks(){
         tasks.clear();
         File file = new File("tasks.txt");
@@ -92,4 +91,6 @@ public class TaskManager {
         
         return temp;
     }
+    
+    
 }

@@ -5,13 +5,12 @@ package GUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 public class Pomodoro extends javax.swing.JFrame {
     static Pomodoro pomodoro = new Pomodoro();
+    static Utilities utilities;
     
     int pomCurrent = 0;
     int spanCurrent = 0;
@@ -19,19 +18,19 @@ public class Pomodoro extends javax.swing.JFrame {
     
     Timer ticker;
     
-    
     public Pomodoro() {
         initComponents();
         Settings.init();
         TaskManager.loadTasks();
         TaskManager.loadDone();
         DateTime.load();
-
+            
         this.getContentPane().setBackground(new Color(51, 51, 55) );
         updateTimer();
         firstTask();
         
         DateTime.saveNow("Opened:");
+        //DateTime.analyzeMarks();
         
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -44,12 +43,13 @@ public class Pomodoro extends javax.swing.JFrame {
         });
         
         ticker = new Timer(10, new ActionListener() {
-            @Override
+            @Override 
             public void actionPerformed(ActionEvent evt) {
-                //Thread this later:
                 tick();
             }
         });
+        
+        utilities = new Utilities();
     }
     
     
@@ -91,6 +91,7 @@ public class Pomodoro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMaximumSize(new java.awt.Dimension(300, 550));
+        setResizable(false);
 
         btn_startpause.setBackground(new java.awt.Color(51, 51, 51));
         btn_startpause.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -741,7 +742,7 @@ public class Pomodoro extends javax.swing.JFrame {
             if(btn_startpause.getText().equals("  Start  ")){
                 btn_startpause.setText(" Pause ");
                 ticker.start();
-                DateTime.saveNow("Started:");
+                DateTime.saveNow("Startd:");
             } else {
                 btn_startpause.setText("  Start  ");
                 ticker.stop();
@@ -767,7 +768,11 @@ public class Pomodoro extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_todo_onClick
 
     private void btn_utilities_onClick(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_utilities_onClick
-        Utilities.utilities.setVisible(true);
+        DateTime.analyzeMarks();
+        
+        Utilities utilities = new Utilities();
+        utilities.setVisible(true);
+        
         this.setEnabled(false);
     }//GEN-LAST:event_btn_utilities_onClick
 
