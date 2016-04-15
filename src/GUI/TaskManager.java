@@ -77,7 +77,7 @@ public class TaskManager {
     }
     
     public static String next(){
-        String temp = "Chill out!";
+        String temp = "Chill out! Click [To-do]!";
         
         if(!tasks.isEmpty()){
             saveToDone(0);

@@ -5,8 +5,10 @@ package GUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
 import javax.swing.JButton;
 import javax.swing.Timer;
+import sun.audio.*;
 
 public class Pomodoro extends javax.swing.JFrame {
     static Pomodoro pomodoro = new Pomodoro();
@@ -18,6 +20,10 @@ public class Pomodoro extends javax.swing.JFrame {
     boolean breaktime = false;
     
     Timer ticker;
+    
+    AudioStream backMusic;
+    AudioData aD;
+    AudioDataStream ads;
     
     public Pomodoro() {
         initComponents();
@@ -43,14 +49,13 @@ public class Pomodoro extends javax.swing.JFrame {
             }
         });
         
-        ticker = new Timer(10, new ActionListener() {
+        ticker = new Timer(1000, new ActionListener() {
             @Override 
             public void actionPerformed(ActionEvent evt) {
                 tick();
             }
         });
         
-        utilities = new Utilities();
     }
     
     
@@ -639,15 +644,21 @@ public class Pomodoro extends javax.swing.JFrame {
     }
     
     public void firstTask(){
-        String temp = "Chill out!";
+        String temp = "Chill out! Click [To-do]!";
         if(!TaskManager.tasks.isEmpty())
             temp = (String)TaskManager.tasks.get(0);
         lbl_task.setText(temp);
     }
     
     public void doneTask(boolean allowNext){
-        if(ticker.isRunning())
-            ticker.restart();
+        if(ticker.isRunning()){
+            if(lbl_task.getText().equals("Chill out! Click [To-do]!")){
+                ticker.stop();
+                btn_startpause.setText("  Start  ");
+            }
+            else
+                ticker.restart();
+        }
         
         if(allowNext)
             nextTask();
@@ -681,6 +692,17 @@ public class Pomodoro extends javax.swing.JFrame {
         lbl_sec.setText( ((s<10)?"0":"") + String.valueOf(s) );
     }
     
+    private void pop(){
+        try{
+            backMusic = new AudioStream(new FileInputStream("pop.wav"));
+            aD = backMusic.getData();
+            ads = new AudioDataStream(aD);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        AudioPlayer.player.start(ads);
+    }
+    
     private void tick(){
         int secs = Integer.parseInt(lbl_sec.getText());
         int mins = Integer.parseInt(lbl_min.getText());
@@ -699,12 +721,13 @@ public class Pomodoro extends javax.swing.JFrame {
                 }
                 else{
                     hrs--;
-                    mins=60;
+                    mins=59;
+                    secs=59;
                     updateTimer(hrs, mins, secs);
                 }
             } else {
                 mins--;
-                secs=60;
+                secs=59;
                 updateTimer(hrs, mins, secs);
             }
         } else {
@@ -730,18 +753,19 @@ public class Pomodoro extends javax.swing.JFrame {
             breaktime = false;
         }
         updateTimer();
+        pop();
     }
     
     private void notifyUser(int i){
         String[] notifications = { "1 Minute More!!!",
                                    "Congratulations for finishing the task!" };
-        
+        pop();
         System.out.println( notifications[i] );
     }
     
     
     private void btn_startpause_onCLick(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_startpause_onCLick
-        if(!lbl_task.getText().equals("Chill out!")){
+        if(!lbl_task.getText().equals("Chill out! Click [To-do]!")){
             if(btn_startpause.getText().equals("  Start  ")){
                 btn_startpause.setText(" Pause ");
                 ticker.start();

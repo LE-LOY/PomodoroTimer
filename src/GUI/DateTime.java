@@ -13,8 +13,9 @@ import java.util.Scanner;
 
 public class DateTime {
     static int[] monthDays = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    static Color[] set = { new Color(128, 128, 128), Color.WHITE };
-
+    static Color[] set = { new Color(128, 128, 128), Color.WHITE , new Color(60, 60, 60)};
+    static int cWidth = 30;
+    
     static ArrayList activities = new ArrayList();
     static ArrayList marks = new ArrayList();
     
@@ -85,28 +86,47 @@ public class DateTime {
         int size = activities.size();
         String last = "Opened:";
         
+        for(int i=0; i<7; ++i)
+            marks.add(new ActiveMark(set[2], cWidth*i, 90, cWidth, 180));
+        
         for(int i=1; i<size; ++i){
             String activity = (String) activities.get(i);
             String that = (String) activities.get(i-1);
             
-            int thatmonth = Integer.parseInt(that.substring(17, 19));
-            int thatday   = Integer.parseInt(that.substring(20, 22));
-            int thatDay = convertDay(thatmonth, thatday);
-            int nowDay  = convertDay(now("MM"), now("dd"));
             
-            int thatMins = getTotalMins(that);
-            int thisMins = getTotalMins(activity);
-            int timeSpan = thisMins-thatMins;
             
             if( (last.startsWith("Opened:") && activity.startsWith("Closed:") )
               ||(last.startsWith("Opened:") && activity.startsWith("Startd:") )
               ||(last.startsWith("Paused:") && activity.startsWith("Startd:") )
               ||(last.startsWith("Paused:") && activity.startsWith("Closed:") ))
-                marks.add(new ActiveMark(set[0], 15*(6-(nowDay-thatDay)), thatMins/4, 15, timeSpan/4));
+                addMark(0, activity, that);
             else if(last.startsWith("Startd:") && activity.startsWith("Paused:"))
-                marks.add(new ActiveMark(set[1], 15*(6-(nowDay-thatDay)), thatMins/4, 15, timeSpan/4));
+                addMark(1, activity, that);
             
             last = activity;
         }
+    }
+    
+    private static void addMark(int i, String activity, String that){
+        int thatMonth = Integer.parseInt(that.substring(17, 19));
+        int thatDay   = Integer.parseInt(that.substring(20, 22));
+        thatDay = convertDay(thatMonth, thatDay);
+        
+        int thismonth = Integer.parseInt(activity.substring(17, 19));
+        int thisDay   = Integer.parseInt(activity.substring(20, 22));
+        thisDay = convertDay(thismonth, thisDay);
+        
+        int nowDay  = convertDay(now("MM"), now("dd"));
+
+        int thatMins = getTotalMins(that);
+        int thisMins = getTotalMins(activity);
+        int timeSpan = thisMins-thatMins;
+        
+        if(thisDay>thatDay){
+            int extra = (thatMins/4)+(timeSpan/4);
+            marks.add(new ActiveMark(set[i], cWidth*(6-(nowDay-thatDay)), thatMins/4, cWidth, 360-thatMins/4));
+            marks.add(new ActiveMark(set[i], cWidth*(7-(nowDay-thatDay)),          0, cWidth, extra));
+        } else
+            marks.add(new ActiveMark(set[i], cWidth*(6-(nowDay-thatDay)), thatMins/4, cWidth, timeSpan/4));
     }
 }
