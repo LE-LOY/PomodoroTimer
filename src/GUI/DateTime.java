@@ -89,14 +89,6 @@ public class DateTime {
             String activity = (String) activities.get(i);
             String that = (String) activities.get(i-1);
             
-//            int thatHour = Integer.parseInt(that.substring(26, 28));
-//            int thatMin = Integer.parseInt(that.substring(29, 31));
-//            thatMin += thatHour*60;
-//
-//            int athatHour = Integer.parseInt(activity.substring(26, 28));
-//            int athatMin = Integer.parseInt(activity.substring(29, 31));
-//            athatMin += athatHour*60;
-            
             int thatmonth = Integer.parseInt(that.substring(17, 19));
             int thatday   = Integer.parseInt(that.substring(20, 22));
             int thatDay = convertDay(thatmonth, thatday);
@@ -106,13 +98,13 @@ public class DateTime {
             int thisMins = getTotalMins(activity);
             int timeSpan = thisMins-thatMins;
             
-            if( (last.startsWith("Opened:") && activity.startsWith("Closed:"))
-              ||(last.startsWith("Opened:") && activity.startsWith("Startd:"))
-              ||(last.startsWith("Paused:") && activity.startsWith("Startd:"))
-              ||(last.startsWith("Paused:") && activity.startsWith("Closed:")))
-                marks.add(new ActiveMark(set[0], thatMins/5, 10*(6-(nowDay-thatDay)), timeSpan/5, 10));
+            if( (last.startsWith("Opened:") && activity.startsWith("Closed:") )
+              ||(last.startsWith("Opened:") && activity.startsWith("Startd:") )
+              ||(last.startsWith("Paused:") && activity.startsWith("Startd:") )
+              ||(last.startsWith("Paused:") && activity.startsWith("Closed:") ))
+                marks.add(new ActiveMark(set[0], 15*(6-(nowDay-thatDay)), thatMins/4, 15, timeSpan/4));
             else if(last.startsWith("Startd:") && activity.startsWith("Paused:"))
-                marks.add(new ActiveMark(set[1], thatMins/5, 10*(6-(nowDay-thatDay)), timeSpan/5, 10));
+                marks.add(new ActiveMark(set[1], 15*(6-(nowDay-thatDay)), thatMins/4, 15, timeSpan/4));
             
             last = activity;
         }

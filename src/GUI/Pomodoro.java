@@ -10,7 +10,8 @@ import javax.swing.Timer;
 
 public class Pomodoro extends javax.swing.JFrame {
     static Pomodoro pomodoro = new Pomodoro();
-    static Utilities utilities;
+    static Utilities utilities = new Utilities();
+    static Todo todo = new Todo();
     
     int pomCurrent = 0;
     int spanCurrent = 0;
@@ -91,7 +92,9 @@ public class Pomodoro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMaximumSize(new java.awt.Dimension(300, 550));
+        setMinimumSize(new java.awt.Dimension(300, 550));
         setResizable(false);
+        setSize(new java.awt.Dimension(300, 550));
 
         btn_startpause.setBackground(new java.awt.Color(51, 51, 51));
         btn_startpause.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -583,12 +586,6 @@ public class Pomodoro extends javax.swing.JFrame {
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(lbl_active, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(btn_done, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(btn_skip, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 51, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(btn_startpause, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 65, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createSequentialGroup()
                         .add(btn_todo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 65, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -599,13 +596,19 @@ public class Pomodoro extends javax.swing.JFrame {
                         .add(pnl_minutes, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 12, Short.MAX_VALUE)
                         .add(pnl_seconds, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(lbl_task, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(lbl_task, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(layout.createSequentialGroup()
+                        .add(btn_done, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(btn_skip, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 51, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(btn_startpause, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 65, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .add(12, 12, 12)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(btn_todo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(btn_utilities, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -613,17 +616,17 @@ public class Pomodoro extends javax.swing.JFrame {
                 .add(lbl_active)
                 .add(30, 30, 30)
                 .add(lbl_task)
-                .add(127, 127, 127)
+                .add(126, 126, 126)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(pnl_hours, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(pnl_seconds, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(pnl_minutes, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(114, 114, 114)
+                .add(117, 117, 117)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(btn_startpause, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(btn_done, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(btn_skip, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .add(btn_skip, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(btn_startpause, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(12, 12, 12))
         );
 
         pack();
@@ -757,12 +760,14 @@ public class Pomodoro extends javax.swing.JFrame {
 
     private void btn_done_onClick(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_done_onClick
         doneTask(true);
+        todo.loadDoneLM();
+        todo.loadDLM();
     }//GEN-LAST:event_btn_done_onClick
 
     
     private void btn_todo_onClick(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_todo_onClick
         //Todo todo = new Todo();
-        Todo.todo.setVisible(true);
+        todo.setVisible(true);
         
         this.setEnabled(false);
     }//GEN-LAST:event_btn_todo_onClick
@@ -770,7 +775,6 @@ public class Pomodoro extends javax.swing.JFrame {
     private void btn_utilities_onClick(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_utilities_onClick
         DateTime.analyzeMarks();
         
-        Utilities utilities = new Utilities();
         utilities.setVisible(true);
         
         this.setEnabled(false);
@@ -897,7 +901,7 @@ public class Pomodoro extends javax.swing.JFrame {
     public static javax.swing.JButton btn_sec_add;
     public static javax.swing.JButton btn_sec_sub;
     private javax.swing.JButton btn_skip;
-    private javax.swing.JButton btn_startpause;
+    public static javax.swing.JButton btn_startpause;
     private javax.swing.JButton btn_todo;
     private javax.swing.JButton btn_utilities;
     private javax.swing.JLabel lbl_active;

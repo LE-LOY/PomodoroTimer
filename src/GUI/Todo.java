@@ -8,7 +8,6 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 
 public class Todo extends javax.swing.JFrame {
-    static Todo todo = new Todo();
     DefaultListModel DLM = new DefaultListModel();
     DefaultListModel DoneLM = new DefaultListModel();
     
@@ -19,6 +18,16 @@ public class Todo extends javax.swing.JFrame {
         
         this.getContentPane().setBackground(new Color(51, 51, 55) );
         this.getRootPane().setDefaultButton(btn_add);
+        
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if(Pomodoro.pomodoro.btn_startpause.getText()==" Pause ")
+                    DateTime.saveNow("Paused:");
+                DateTime.saveNow("Closed:");
+                System.exit(0);
+            }
+        });
         
         btn_done.setEnabled(false);
     }
@@ -201,7 +210,7 @@ public class Todo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void loadDLM(){
+    public void loadDLM(){
         DLM.clear();
         ArrayList tasks = TaskManager.tasks;
         int size = tasks.size();
@@ -213,7 +222,7 @@ public class Todo extends javax.swing.JFrame {
         System.out.println("DLM loaded!");
     }
     
-    private void loadDoneLM(){
+    public void loadDoneLM(){
         DoneLM.clear();
         ArrayList done = TaskManager.done;
         int size = done.size();
@@ -287,6 +296,7 @@ public class Todo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lbl_activeMouseClicked
 
+    
     private void onMouseEnter(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onMouseEnter
         JButton button = (JButton) evt.getSource();
         button.setBackground(new Color(35, 35, 40));
@@ -337,7 +347,7 @@ public class Todo extends javax.swing.JFrame {
         //</editor-fold>
 
         java.awt.EventQueue.invokeLater(() -> {
-            todo.setVisible(true);
+            Pomodoro.todo.setVisible(true);
         });
     }
 

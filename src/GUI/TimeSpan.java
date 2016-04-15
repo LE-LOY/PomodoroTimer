@@ -3,9 +3,9 @@
 package GUI;
 
 public class TimeSpan {
-    int hours;
-    int minutes;
-    int seconds;
+    private int hours;
+    private int minutes;
+    private int seconds;
     
     public TimeSpan(){
         this.hours = 0;
